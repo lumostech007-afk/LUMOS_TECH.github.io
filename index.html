@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LUMOS TECH ⚡ – Powered by VJ Computers</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Syne:wght@400;600;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #f5c518;
+    --gold-dim: #c49a10;
+    --gold-glow: rgba(245,197,24,0.18);
+    --dark: #0a0a0f;
+    --dark2: #111118;
+    --dark3: #18181f;
+    --dark4: #222230;
+    --text: #e8e8f0;
+    --muted: #888898;
+    --green: #22c55e;
+    --wa: #25D366;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--dark);color:var(--text);font-family:'Space Grotesk',sans-serif;overflow-x:hidden;}
+ 
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,15,0.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(245,197,24,0.12);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:64px;}
+  .nav-logo{font-family:'Orbitron',monospace;font-size:1.15rem;font-weight:900;color:var(--gold);letter-spacing:0.08em;display:flex;align-items:center;gap:8px;}
+  .nav-logo span{color:var(--text);font-size:0.68rem;font-family:'Space Grotesk',sans-serif;font-weight:400;display:block;letter-spacing:0.02em;margin-top:1px;}
+  .nav-links{display:flex;gap:2rem;list-style:none;}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:0.85rem;font-weight:500;letter-spacing:0.04em;transition:color 0.2s;}
+  .nav-links a:hover{color:var(--gold);}
+  .nav-cta{background:var(--gold);color:#000;padding:8px 20px;border-radius:4px;font-weight:700;font-size:0.82rem;text-decoration:none;letter-spacing:0.04em;transition:background 0.2s;}
+  .nav-cta:hover{background:var(--gold-dim);}
+ 
+  /* HERO */
+  .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem 3rem;position:relative;overflow:hidden;}
+  .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 40%,rgba(245,197,24,0.07) 0%,transparent 70%);pointer-events:none;}
+  .grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(245,197,24,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(245,197,24,0.04) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
+  .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(245,197,24,0.1);border:1px solid rgba(245,197,24,0.25);border-radius:100px;padding:6px 18px;font-size:0.75rem;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:2rem;font-weight:600;}
+  .hero-badge::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:blink 2s infinite;}
+  @keyframes blink{0%,100%{opacity:1;}50%{opacity:0.3;}}
+  .hero h1{font-family:'Orbitron',monospace;font-size:clamp(2.8rem,8vw,6rem);font-weight:900;line-height:1;letter-spacing:-0.02em;margin-bottom:0.4rem;}
+  .hero h1 .accent{color:var(--gold);}
+  .hero-sub{font-family:'Syne',sans-serif;font-size:1.1rem;color:var(--muted);margin-bottom:1rem;letter-spacing:0.04em;}
+  .hero-tagline{font-size:clamp(1.1rem,3vw,1.6rem);font-weight:300;color:var(--text);margin-bottom:0.6rem;font-style:italic;}
+  .hero-tagline em{color:var(--gold);font-style:normal;font-weight:600;}
+  .hero-big{font-size:clamp(1rem,2.5vw,1.35rem);color:var(--muted);margin-bottom:2.5rem;max-width:580px;}
+  .hero-btns{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;}
+  .btn-gold{background:var(--gold);color:#000;padding:14px 32px;border-radius:4px;font-weight:700;font-size:0.92rem;text-decoration:none;letter-spacing:0.04em;transition:all 0.2s;display:inline-flex;align-items:center;gap:8px;}
+  .btn-gold:hover{background:var(--gold-dim);transform:translateY(-2px);}
+  .btn-ghost{border:1px solid rgba(245,197,24,0.35);color:var(--gold);padding:14px 32px;border-radius:4px;font-weight:600;font-size:0.92rem;text-decoration:none;letter-spacing:0.04em;transition:all 0.2s;display:inline-flex;align-items:center;gap:8px;}
+  .btn-ghost:hover{background:rgba(245,197,24,0.08);transform:translateY(-2px);}
+  .hero-phones{margin-top:3rem;display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center;}
+  .phone-chip{display:flex;align-items:center;gap:8px;background:var(--dark3);border:1px solid var(--dark4);border-radius:6px;padding:10px 18px;font-size:0.88rem;color:var(--text);text-decoration:none;transition:border-color 0.2s;}
+  .phone-chip:hover{border-color:var(--gold);}
+  .phone-chip .dot{width:8px;height:8px;border-radius:50%;background:var(--green);}
+ 
+  /* SECTION COMMON */
+  section{padding:5rem 2rem;}
+  .container{max-width:1100px;margin:0 auto;}
+  .section-label{font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:0.8rem;}
+  .section-title{font-family:'Orbitron',monospace;font-size:clamp(1.6rem,4vw,2.5rem);font-weight:700;line-height:1.1;margin-bottom:1rem;}
+  .section-desc{color:var(--muted);font-size:1rem;max-width:560px;line-height:1.7;}
+  .divider{width:48px;height:3px;background:var(--gold);border-radius:2px;margin:1rem 0 2.5rem;}
+ 
+  /* STATS */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:rgba(245,197,24,0.1);border-radius:8px;overflow:hidden;margin-top:4rem;}
+  .stat{background:var(--dark2);padding:2rem 1.5rem;text-align:center;}
+  .stat-num{font-family:'Orbitron',monospace;font-size:2.2rem;font-weight:900;color:var(--gold);}
+  .stat-lbl{color:var(--muted);font-size:0.8rem;margin-top:4px;letter-spacing:0.06em;}
+ 
+  /* SERVICES */
+  #services{background:var(--dark2);}
+  .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:3rem;}
+  .service-card{background:var(--dark3);border:1px solid var(--dark4);border-radius:8px;padding:1.8rem;transition:all 0.25s;position:relative;overflow:hidden;}
+  .service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform 0.3s;}
+  .service-card:hover{border-color:rgba(245,197,24,0.3);transform:translateY(-4px);}
+  .service-card:hover::before{transform:scaleX(1);}
+  .service-icon{width:48px;height:48px;background:rgba(245,197,24,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;font-size:1.5rem;}
+  .service-card h3{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;margin-bottom:0.5rem;color:var(--gold);}
+  .service-card p{color:var(--muted);font-size:0.88rem;line-height:1.65;}
+  .service-list{list-style:none;margin-top:1rem;}
+  .service-list li{color:var(--muted);font-size:0.83rem;padding:4px 0;display:flex;align-items:center;gap:8px;}
+  .service-list li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;}
+ 
+  /* WHY US */
+  .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;margin-top:3rem;}
+  .why-card{background:var(--dark3);border:1px solid var(--dark4);border-radius:8px;padding:1.5rem;text-align:center;}
+  .why-card .why-icon{font-size:2.2rem;margin-bottom:1rem;}
+  .why-card h4{font-size:0.95rem;font-weight:600;margin-bottom:0.4rem;color:var(--text);}
+  .why-card p{font-size:0.83rem;color:var(--muted);line-height:1.6;}
+ 
+  /* PROCESS */
+  #process{background:var(--dark2);}
+  .process-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;margin-top:3rem;position:relative;}
+  .process-step{text-align:center;padding:2rem 1rem;position:relative;}
+  .step-num{width:60px;height:60px;border-radius:50%;background:var(--gold);color:#000;font-family:'Orbitron',monospace;font-size:1.2rem;font-weight:900;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;}
+  .process-step h4{font-weight:700;font-size:0.95rem;margin-bottom:0.4rem;}
+  .process-step p{color:var(--muted);font-size:0.82rem;line-height:1.6;}
+ 
+  /* LAPTOPS */
+  #laptops{padding:5rem 2rem;}
+  .laptop-filters{display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:2rem;margin-bottom:2rem;}
+  .filter-btn{background:var(--dark3);border:1px solid var(--dark4);color:var(--muted);padding:8px 18px;border-radius:100px;font-size:0.82rem;cursor:pointer;transition:all 0.2s;font-family:'Space Grotesk',sans-serif;}
+  .filter-btn.active,.filter-btn:hover{background:rgba(245,197,24,0.12);border-color:var(--gold);color:var(--gold);}
+  .laptops-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem;}
+  .laptop-card{background:var(--dark3);border:1px solid var(--dark4);border-radius:10px;overflow:hidden;transition:all 0.25s;cursor:pointer;position:relative;}
+  .laptop-card:hover{border-color:rgba(245,197,24,0.4);transform:translateY(-5px);box-shadow:0 12px 40px rgba(245,197,24,0.08);}
+  .laptop-img{width:100%;height:180px;background:var(--dark4);display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;}
+  .laptop-badge{position:absolute;top:10px;left:10px;background:var(--green);color:#000;font-size:0.65rem;font-weight:700;padding:3px 10px;border-radius:100px;letter-spacing:0.06em;}
+  .laptop-badge.used{background:#f59e0b;}
+  .laptop-info{padding:1.2rem;}
+  .laptop-brand{font-size:0.7rem;color:var(--gold);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.3rem;}
+  .laptop-name{font-size:0.92rem;font-weight:600;line-height:1.4;margin-bottom:0.8rem;color:var(--text);}
+  .laptop-specs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem;}
+  .spec-chip{background:var(--dark4);color:var(--muted);font-size:0.7rem;padding:3px 9px;border-radius:4px;}
+  .laptop-price{font-family:'Orbitron',monospace;font-size:1.15rem;font-weight:900;color:var(--gold);margin-bottom:1rem;}
+  .wa-btn{width:100%;background:var(--wa);color:#fff;border:none;padding:11px;border-radius:6px;font-weight:700;font-size:0.85rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:background 0.2s;font-family:'Space Grotesk',sans-serif;}
+  .wa-btn:hover{background:#1da851;}
+  .wa-icon{width:18px;height:18px;}
+ 
+  /* CONTACT */
+  #contact{background:var(--dark2);}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:3rem;}
+  @media(max-width:640px){.contact-grid{grid-template-columns:1fr;}}
+  .contact-card{background:var(--dark3);border:1px solid var(--dark4);border-radius:10px;padding:2rem;}
+  .contact-card h3{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;margin-bottom:1.5rem;color:var(--gold);}
+  .contact-item{display:flex;align-items:center;gap:12px;margin-bottom:1rem;}
+  .contact-icon{width:36px;height:36px;border-radius:6px;background:rgba(245,197,24,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.1rem;}
+  .contact-item a{color:var(--text);text-decoration:none;font-size:0.9rem;}
+  .contact-item a:hover{color:var(--gold);}
+  .contact-item p{color:var(--muted);font-size:0.8rem;}
+  .contact-btns{display:flex;flex-direction:column;gap:1rem;}
+  .btn-wa{background:var(--wa);color:#fff;padding:14px 24px;border-radius:6px;font-weight:700;font-size:0.9rem;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:10px;transition:background 0.2s;}
+  .btn-wa:hover{background:#1da851;}
+  .btn-call{background:var(--dark4);color:var(--text);padding:14px 24px;border-radius:6px;font-weight:600;font-size:0.9rem;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:10px;border:1px solid var(--dark4);transition:all 0.2s;}
+  .btn-call:hover{border-color:var(--gold);color:var(--gold);}
+ 
+  /* FOOTER */
+  footer{background:var(--dark);border-top:1px solid rgba(245,197,24,0.1);padding:2.5rem 2rem;text-align:center;}
+  .footer-logo{font-family:'Orbitron',monospace;font-size:1.2rem;font-weight:900;color:var(--gold);margin-bottom:0.5rem;}
+  .footer-sub{color:var(--muted);font-size:0.82rem;margin-bottom:1.5rem;}
+  .footer-links{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.5rem;}
+  .footer-links a{color:var(--muted);text-decoration:none;font-size:0.82rem;transition:color 0.2s;}
+  .footer-links a:hover{color:var(--gold);}
+  .footer-copy{color:var(--dark4);font-size:0.75rem;}
+ 
+  /* WA FLOAT */
+  .wa-float{position:fixed;bottom:24px;right:24px;z-index:99;background:var(--wa);color:#fff;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.35);text-decoration:none;transition:transform 0.2s;}
+  .wa-float:hover{transform:scale(1.1);}
+  .wa-float svg{width:28px;height:28px;}
+ 
+  @media(max-width:768px){
+    nav{padding:0 1rem;}
+    .nav-links{display:none;}
+    .hero h1{font-size:2.5rem;}
+    .stats{grid-template-columns:repeat(2,1fr);}
+    .laptops-grid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr));}
+    section{padding:3.5rem 1.2rem;}
+  }
+ 
+  .fade-in{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease;}
+  .fade-in.visible{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+ 
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    ⚡ LUMOS TECH
+    <span>Powered by VJ Computers</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#laptops">Laptops</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="https://wa.me/94769228829" target="_blank" class="nav-cta">WhatsApp Us</a>
+</nav>
+ 
+<!-- HERO -->
+<section class="hero">
+  <div class="grid-bg"></div>
+  <div class="hero-badge">● Live &amp; Accepting Repairs</div>
+  <h1>💡 LUMOS <span class="accent">TECH</span> ⚡</h1>
+  <p class="hero-sub">Powered by VJ Computers · Enlight Your Future</p>
+  <p class="hero-tagline">Is your laptop <em>slow, broken, or dead?</em></p>
+  <p class="hero-big">We bring it back to life! 💻✨<br>Don't replace it — <strong>REPAIR it!</strong></p>
+  <div class="hero-btns">
+    <a href="https://wa.me/94769228829?text=Hi%20LUMOS%20TECH!%20I%20need%20a%20repair." target="_blank" class="btn-gold">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Book a Repair
+    </a>
+    <a href="#laptops" class="btn-ghost">Browse Laptops →</a>
+  </div>
+  <div class="hero-phones">
+    <a href="tel:0769228829" class="phone-chip"><span class="dot"></span>📞 076 922 8829</a>
+    <a href="tel:0770844039" class="phone-chip"><span class="dot"></span>📞 077 084 4039</a>
+  </div>
+  <div class="stats fade-in">
+    <div class="stat"><div class="stat-num">500+</div><div class="stat-lbl">Devices Repaired</div></div>
+    <div class="stat"><div class="stat-num">15+</div><div class="stat-lbl">Years Experience</div></div>
+    <div class="stat"><div class="stat-num">90</div><div class="stat-lbl">Day Warranty</div></div>
+    <div class="stat"><div class="stat-num">24hr</div><div class="stat-lbl">Fast Turnaround</div></div>
+  </div>
+</section>
+ 
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <p class="section-label fade-in">What We Do</p>
+    <h2 class="section-title fade-in">Our <span style="color:var(--gold)">Services</span></h2>
+    <div class="divider fade-in"></div>
+    <div class="services-grid">
+      <div class="service-card fade-in">
+        <div class="service-icon">🔧</div>
+        <h3>Basic Repairs</h3>
+        <p>Fast, affordable fixes for everyday laptop problems.</p>
+        <ul class="service-list">
+          <li>Screen replacement</li>
+          <li>Keyboard repair</li>
+          <li>Battery replacement</li>
+          <li>Charging port fix</li>
+          <li>RAM / SSD upgrade</li>
+        </ul>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon">⚙️</div>
+        <h3>Chip-Level Repairs</h3>
+        <p>Advanced motherboard and component-level diagnosis and repair.</p>
+        <ul class="service-list">
+          <li>Motherboard repair</li>
+          <li>GPU reball / reflow</li>
+          <li>Power IC replacement</li>
+          <li>Short circuit diagnosis</li>
+          <li>No-power fix</li>
+        </ul>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon">💾</div>
+        <h3>Software Solutions</h3>
+        <p>OS installs, virus removal, and full system optimization.</p>
+        <ul class="service-list">
+          <li>Windows / Linux install</li>
+          <li>Virus &amp; malware removal</li>
+          <li>Driver installation</li>
+          <li>Data recovery</li>
+          <li>Performance tuning</li>
+        </ul>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon">🌐</div>
+        <h3>Network &amp; Setup</h3>
+        <p>Home and office network setup and configuration.</p>
+        <ul class="service-list">
+          <li>WiFi setup</li>
+          <li>Router configuration</li>
+          <li>Network troubleshooting</li>
+          <li>File sharing setup</li>
+        </ul>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon">🖨️</div>
+        <h3>Peripherals</h3>
+        <p>Printer, scanner and peripheral device support.</p>
+        <ul class="service-list">
+          <li>Printer setup &amp; repair</li>
+          <li>Driver installation</li>
+          <li>Paper jam resolution</li>
+          <li>Ink system cleaning</li>
+        </ul>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon">⬆️</div>
+        <h3>System Upgrades</h3>
+        <p>Boost your old laptop's speed with smart hardware upgrades.</p>
+        <ul class="service-list">
+          <li>RAM upgrade</li>
+          <li>SSD installation</li>
+          <li>Storage expansion</li>
+          <li>Cooling system clean</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- WHY US -->
+<section>
+  <div class="container">
+    <p class="section-label fade-in">Why Choose Us</p>
+    <h2 class="section-title fade-in">Trusted by <span style="color:var(--gold)">Hundreds</span></h2>
+    <div class="divider fade-in"></div>
+    <div class="why-grid">
+      <div class="why-card fade-in">
+        <div class="why-icon">🛡️</div>
+        <h4>90-Day Warranty</h4>
+        <p>All repairs come with a comprehensive 90-day service warranty and genuine parts guarantee.</p>
+      </div>
+      <div class="why-card fade-in">
+        <div class="why-icon">⚡</div>
+        <h4>Same-Day Diagnosis</h4>
+        <p>Free diagnosis and 24–48 hour basic repair turnaround. Express service available.</p>
+      </div>
+      <div class="why-card fade-in">
+        <div class="why-icon">🏆</div>
+        <h4>Expert Technicians</h4>
+        <p>Certified professionals with 15+ years of experience and continuous training.</p>
+      </div>
+      <div class="why-card fade-in">
+        <div class="why-icon">💰</div>
+        <h4>Transparent Pricing</h4>
+        <p>Detailed repair estimates upfront — no hidden charges, ever.</p>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- PROCESS -->
+<section id="process">
+  <div class="container">
+    <p class="section-label fade-in">How It Works</p>
+    <h2 class="section-title fade-in">Our Repair <span style="color:var(--gold)">Process</span></h2>
+    <div class="divider fade-in"></div>
+    <div class="process-steps fade-in">
+      <div class="process-step">
+        <div class="step-num">01</div>
+        <h4>Diagnosis</h4>
+        <p>Free comprehensive diagnosis of your device issues</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">02</div>
+        <h4>Estimate</h4>
+        <p>Transparent pricing with detailed repair estimate</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">03</div>
+        <h4>Repair</h4>
+        <p>Professional repair using genuine parts and tools</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">04</div>
+        <h4>Testing</h4>
+        <p>Thorough testing and quality assurance before delivery</p>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- LAPTOPS -->
+<section id="laptops">
+  <div class="container">
+    <p class="section-label fade-in">Buy &amp; Sell</p>
+    <h2 class="section-title fade-in">Laptop <span style="color:var(--gold)">Sale</span></h2>
+    <p class="section-desc fade-in">Click any laptop to enquire instantly on WhatsApp — we'll send you full specs and price.</p>
+    <div class="divider fade-in"></div>
+    <div class="laptop-filters fade-in">
+      <button class="filter-btn active" onclick="filterLaptops('all',this)">All</button>
+      <button class="filter-btn" onclick="filterLaptops('new',this)">Brand New</button>
+      <button class="filter-btn" onclick="filterLaptops('used',this)">Used</button>
+      <button class="filter-btn" onclick="filterLaptops('gaming',this)">Gaming</button>
+      <button class="filter-btn" onclick="filterLaptops('budget',this)">Budget</button>
+    </div>
+    <div class="laptops-grid" id="laptopsGrid"></div>
+  </div>
+</section>
+ 
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <p class="section-label fade-in">Get In Touch</p>
+    <h2 class="section-title fade-in">Ready to Fix Your <span style="color:var(--gold)">Device?</span></h2>
+    <div class="divider fade-in"></div>
+    <div class="contact-grid fade-in">
+      <div class="contact-card">
+        <h3>📍 LUMOS TECH – VJ Computers</h3>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <a href="tel:0769228829">076 922 8829</a>
+            <p>Primary line</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <a href="tel:0770844039">077 084 4039</a>
+            <p>Secondary line</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🕐</div>
+          <div>
+            <a>Mon – Sat: 9 AM – 7 PM</a>
+            <p>Working hours</p>
+          </div>
+        </div>
+      </div>
+      <div class="contact-card">
+        <h3>💬 Contact Us Directly</h3>
+        <div class="contact-btns">
+          <a href="https://wa.me/94769228829?text=Hi%20LUMOS%20TECH!%20I%20need%20help%20with%20my%20laptop." target="_blank" class="btn-wa">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp: 076 922 8829
+          </a>
+          <a href="https://wa.me/94770844039?text=Hi%20LUMOS%20TECH!%20I%20need%20help%20with%20my%20laptop." target="_blank" class="btn-wa" style="background:#128C7E;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp: 077 084 4039
+          </a>
+          <a href="tel:0769228829" class="btn-call">📞 Call Now: 076 922 8829</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">⚡ LUMOS TECH</div>
+  <p class="footer-sub">Powered by VJ Computers · Enlight Your Future</p>
+  <div class="footer-links">
+    <a href="#services">Services</a>
+    <a href="#laptops">Laptops</a>
+    <a href="#process">Process</a>
+    <a href="#contact">Contact</a>
+    <a href="https://wa.me/94769228829" target="_blank">WhatsApp</a>
+  </div>
+  <p class="footer-copy">© 2026 LUMOS TECH – VJ Computers. All rights reserved.</p>
+</footer>
+ 
+<!-- WA FLOAT -->
+<a href="https://wa.me/94769228829?text=Hi%20LUMOS%20TECH!%20I%20need%20help%20with%20my%20laptop." target="_blank" class="wa-float" title="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+ 
+<script>
+const laptops = [
+  {id:1,brand:'HP',name:'HP 15 Intel Core Ultra 5 125H · 8GB RAM · 512GB SSD',price:'LKR 215,000',specs:['Core Ultra 5','8GB RAM','512GB SSD','Win 11'],type:'new',emoji:'💻'},
+  {id:2,brand:'LENOVO',name:'Lenovo IdeaPad 5 2-in-1 14" Ultra 5 225U · 8GB · 512GB Touch',price:'LKR 215,000',specs:['Ultra 5','8GB','512GB','Touch'],type:'new',emoji:'💻'},
+  {id:3,brand:'LENOVO',name:'Lenovo Slim 3 i5 13420H · 8GB · 512GB Touch',price:'LKR 205,000',specs:['i5 13th Gen','8GB','512GB','Touch'],type:'new',emoji:'💻'},
+  {id:4,brand:'ASUS',name:'Asus VivoBook F1605V i7 1355U 13Gen · 16GB · 512GB',price:'LKR 250,000',specs:['i7 13th Gen','16GB','512GB'],type:'new',emoji:'💻'},
+  {id:5,brand:'DELL',name:'Dell Inspiron 15 i5 · 8GB · 256GB SSD · Good Condition',price:'LKR 65,000',specs:['i5','8GB','256GB SSD'],type:'used',emoji:'💻'},
+  {id:6,brand:'HP',name:'HP EliteBook 840 G5 i5 8th Gen · 16GB · 256GB',price:'LKR 75,000',specs:['i5 8th Gen','16GB','256GB'],type:'used',emoji:'💻'},
+  {id:7,brand:'LENOVO',name:'Lenovo ThinkPad T480 i7 · 16GB · 512GB · Business Ready',price:'LKR 95,000',specs:['i7','16GB','512GB'],type:'used',emoji:'💻'},
+  {id:8,brand:'ASUS',name:'Asus TUF Gaming F15 i5 · RTX 3050 · 16GB · 512GB',price:'LKR 185,000',specs:['i5','RTX 3050','16GB','144Hz'],type:'gaming',emoji:'🎮'},
+  {id:9,brand:'ACER',name:'Acer Nitro 5 i5 12th Gen · RTX 3050Ti · 16GB · 512GB',price:'LKR 175,000',specs:['i5 12th Gen','RTX 3050Ti','16GB'],type:'gaming',emoji:'🎮'},
+  {id:10,brand:'HP',name:'HP 14 Celeron N4020 · 4GB · 128GB · Lightweight',price:'LKR 55,000',specs:['Celeron','4GB','128GB','14"'],type:'budget',emoji:'💻'},
+  {id:11,brand:'LENOVO',name:'Lenovo IdeaPad 1 AMD E-Series · 4GB · 256GB',price:'LKR 58,000',specs:['AMD','4GB','256GB'],type:'budget',emoji:'💻'},
+  {id:12,brand:'ACER',name:'Acer Aspire 3 i3 11th Gen · 8GB · 256GB',price:'LKR 72,000',specs:['i3 11th Gen','8GB','256GB'],type:'budget',emoji:'💻'},
+];
+ 
+let currentFilter = 'all';
+ 
+function renderLaptops(filter){
+  const grid = document.getElementById('laptopsGrid');
+  const filtered = filter === 'all' ? laptops : laptops.filter(l=>l.type===filter);
+  grid.innerHTML = filtered.map(l=>`
+    <div class="laptop-card" onclick="enquireLaptop(${l.id})">
+      <div class="laptop-img">
+        ${l.emoji}
+        <span class="laptop-badge ${l.type==='used'?'used':''}">${l.type==='used'?'USED':l.type==='gaming'?'GAMING':'NEW'}</span>
+      </div>
+      <div class="laptop-info">
+        <div class="laptop-brand">${l.brand}</div>
+        <div class="laptop-name">${l.name}</div>
+        <div class="laptop-specs">${l.specs.map(s=>`<span class="spec-chip">${s}</span>`).join('')}</div>
+        <div class="laptop-price">${l.price}</div>
+        <button class="wa-btn" onclick="event.stopPropagation();enquireLaptop(${l.id})">
+          <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Enquire on WhatsApp
+        </button>
+      </div>
+    </div>
+  `).join('');
+}
+ 
+function filterLaptops(type, btn){
+  currentFilter = type;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderLaptops(type);
+}
+ 
+function enquireLaptop(id){
+  const l = laptops.find(x=>x.id===id);
+  const msg = encodeURIComponent(`Hi LUMOS TECH! 👋\n\nI'm interested in this laptop:\n\n🖥️ *${l.brand} – ${l.name}*\n💰 Price: ${l.price}\n\nPlease share more details. Thank you!`);
+  window.open(`https://wa.me/94769228829?text=${msg}`,'_blank');
+}
+ 
+renderLaptops('all');
+ 
+const obs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');}});
+},{threshold:0.1});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
